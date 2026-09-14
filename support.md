@@ -1,1 +1,1 @@
-Edit this file to change your mod's support info, or delete it if you don't need it.
+Report issues at https://github.com/Nornide1234/Retro-Edit/issues.
