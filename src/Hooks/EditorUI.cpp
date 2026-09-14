@@ -17,6 +17,24 @@ class $modify (RetroEditorUI, EditorUI)
         int selectedTab = 0;
     };
 
+    void hideVanillaCreateUI()
+    {
+        if (m_tabsMenu)
+        {
+            m_tabsMenu->stopAllActions();
+            m_tabsMenu->setScale(0.f);
+        }
+
+        if (m_createButtonBars)
+        {
+            for (auto bar : CCArrayExt<CCNode*>(m_createButtonBars))
+            {
+                bar->stopAllActions();
+                bar->setScale(0.f);
+            }
+        }
+    }
+
     bool init(LevelEditorLayer* editorLayer)
     {
         if (!EditorUI::init(editorLayer))
@@ -74,6 +92,7 @@ class $modify (RetroEditorUI, EditorUI)
         selectTab(0);
 
         this->addChild(tabsMenu);
+        hideVanillaCreateUI();
         return true;
     }
 
@@ -81,22 +100,11 @@ class $modify (RetroEditorUI, EditorUI)
     {
         EditorUI::setupCreateMenu();
 
-        if (auto tabs = m_tabsMenu)
-        {
-            tabs->setScale(0);
-        }
-
-        for (auto tab : CCArrayExt<CCNode*>(m_createButtonBars))
-        {
-            tab->setScale(0);
-        }
+        hideVanillaCreateUI();
 
         Loader::get()->queueInMainThread([this]
         {
-            for (auto tab : CCArrayExt<CCNode*>(m_createButtonBars))
-            {
-                tab->setScale(0);
-            }
+            hideVanillaCreateUI();
         });
     }
 
@@ -144,12 +152,14 @@ class $modify (RetroEditorUI, EditorUI)
     {
         EditorUI::resetUI();
 
+        hideVanillaCreateUI();
         updateCustomTabs();
     }
 
     void updateCreateMenu(bool p0)
     {
         EditorUI::updateCreateMenu(p0);
+        hideVanillaCreateUI();
 
         for (auto btn : CCArrayExt<CCNode*>(m_fields->objs))
         {

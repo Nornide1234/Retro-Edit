@@ -1,3 +1,6 @@
+# 1.0.3
+- Fixed the current Geometry Dash 2.2 category bar reappearing over the retro palette.
+
 # 1.0.2
 - Updated for Geometry Dash 2.2081 and Geode 5.10.1.
 - Removed the obsolete hard dependency on Old Color Triggers.

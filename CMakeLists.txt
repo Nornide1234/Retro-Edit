@@ -8,7 +8,7 @@ else()
 endif()
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
-project(RetroEdit VERSION 1.0.2)
+project(RetroEdit VERSION 1.0.3)
 
 file(GLOB SOURCES
 	src/*.cpp
